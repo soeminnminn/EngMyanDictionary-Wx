@@ -1,0 +1,37 @@
+# Files to be ignored by git
+**.pyc
+**.pyo
+**~
+
+# build related directories
+bdist
+build
+dist
+publish
+__pycache__
+
+# build related files
+*.log
+MANIFEST
+EngMyanDict.exe
+
+# IDE project files
+.idea
+.ropeproject
+*.wpr
+.vs
+*.pyproj.user
+
+# automatically generated version file
+version.py
+/tests/generated/*
+sphinx/images/*.*
+docs/doctrees/*.*
+docs/html/_sources/*.*
+/tests/test_bugs_new_38-64.py
+/tests/test_gui_new_38-64.py
+*.xpm
+*.xcf
+/tests/test_bugs_new_310-64.py
+/tests/test_cli_27.py
+/tests/test_gui_new_310-64.py
