@@ -236,6 +236,7 @@ class MainFrame(wx.Frame):
 class EngMyanApp(wx.App):
 
     def OnInit(self):
+        self.SetAppDisplayName("Eng-Myan Dict")
         self.frame = MainFrame(self)
         self.SetTopWindow(self.frame)
         self.frame.Show()

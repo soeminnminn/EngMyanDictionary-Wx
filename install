@@ -1,0 +1,44 @@
+#!/bin/bash
+
+if [[ $EUID -eq 0 ]]; then 
+   echo "This script can't be run as root" 
+   exit 1
+fi
+
+########################################################################
+echo "Create application folder"
+
+APP_DIR=$HOME/.local/share/EngMyanDict
+
+if [ ! -d "$APP_DIR" ]; then
+   mkdir $APP_DIR
+else
+  rm -rf $APP_DIR
+  mkdir $APP_DIR
+fi
+
+cp -R ./src/* $APP_DIR/
+
+########################################################################
+echo "Create Bash"
+
+echo -e $"#!/bin/bash\n"\
+"python3 /home/smm/.local/share/EngMyanDict/" >> $HOME/.local/bin/eng_myan_dict
+
+chmod +x $HOME/.local/bin/eng_myan_dict
+
+########################################################################
+echo "Create Desktop Entry"
+
+echo -e $"[Desktop Entry]\n"\
+"Version=1.0\n"\
+"Name=Eng-Myan Dictionary\n"\
+"Comment=English Myanmar dictionary.\n"\
+"Exec=eng_myan_dict\n"\
+"Icon="$HOME"/.local/share/EngMyanDict/assets/icon.svg\n"\
+"Terminal=false\n"\
+"Type=Application\n"\
+"Categories=Utility;" >> $HOME/.local/share/applications/eng_myan_dict.desktop
+
+########################################################################
+echo "Install complete"

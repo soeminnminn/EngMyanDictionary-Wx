@@ -18,11 +18,6 @@ database_file = 'EMDictionary.db'                   # Database file name of dist
 picture_zip_file = 'pics.zip'                       # Pictures zip file name
 data_size = 50                                      # Size limit for data query
 
-platform = 'not_set'                 # Current platform string (mostly wx.Platform)
-version = 'not_set'                  # application version string; see: get_version()
-py_version = sys.version.split()[0]  # Python version string
-wx_version = 'not_set'               # wxPython version string
-
 if len(wx.VERSION)==5:
     def SetToolTip(c, s):
         c.SetToolTipString(s)
@@ -75,9 +70,13 @@ def get_version(suffix=True):
     see: read_version_file()"""
     release = read_version_file()
     if not release:
-        release = 'not found'
+        release = 'unknown'
 
     if suffix and hasattr(sys, 'frozen'):
         release = '%s (standalone edition)' % release
 
     return release
+    
+version = get_version()                  # application version string; see: get_version()
+py_version = sys.version.split()[0]  # Python version string
+wx_version = wx.version()               # wxPython version string
